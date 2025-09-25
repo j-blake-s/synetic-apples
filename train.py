@@ -64,6 +64,7 @@ if __name__ == "__main__":
   ultralytics.checks()
 
   args = parse_args()
+  if args.data[-1] == "/": args.data = args.data[:-1]
 
   # Save Period
   savePeriod = args.epochs // 10
