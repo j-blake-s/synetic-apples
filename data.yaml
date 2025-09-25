@@ -1,5 +1,0 @@
-train: /data/DATASETS/synetic-apples/finetune/yolo/images/trains
-val: /data/DATASETS/synetic-apples/finetune/yolo/images/vals
-nc: 1
-names:
-  0: 'apple'

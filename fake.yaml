@@ -1,6 +1,0 @@
-train: /home/blake/Desktop/github/ApplesM5/real/yolo/images/trains
-val: /home/blake/Desktop/github/ApplesM5/real/yolo/images/vals
-
-nc: 1
-names:
-  0: 'apple'
