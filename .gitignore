@@ -6,3 +6,4 @@ synetic-train+real-val
 synetic
 runs
 data.yaml
+*.sh
