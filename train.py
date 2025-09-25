@@ -65,7 +65,7 @@ if __name__ == "__main__":
 
   args = parse_args()
   if args.data[-1] == "/": args.data = args.data[:-1]
-  if args.checkpoint[-1] == "/": args.checkpoint = args.checkpoint[:-1]
+  if args.checkpoint is not None and args.checkpoint[-1] == "/": args.checkpoint = args.checkpoint[:-1]
 
   # Save Period
   savePeriod = args.epochs // 10
