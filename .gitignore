@@ -7,3 +7,5 @@ synetic
 runs
 data.yaml
 *.sh
+err
+logs
