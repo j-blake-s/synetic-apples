@@ -1,6 +1,5 @@
 import ultralytics
 
-
 '''
 
 NOTE:
@@ -54,6 +53,7 @@ def parse_args():
     parser.add_argument('--epochs', default=100, type=int, help='Number of training epochs')
     parser.add_argument('-b','--batch_size', default=16, type=int, help='batch_size')
     parser.add_argument('--freeze', default=0, type=int, help='number of layers to freeze')
+    parser.add_argument('--checkpoint', default=None, type=str, help="path to model directory")
 
     
     args = parser.parse_args()
@@ -65,6 +65,7 @@ if __name__ == "__main__":
 
   args = parse_args()
   if args.data[-1] == "/": args.data = args.data[:-1]
+  if args.checkpoint[-1] == "/": args.checkpoint = args.checkpoint[:-1]
 
   # Save Period
   savePeriod = args.epochs // 10
@@ -80,14 +81,20 @@ if __name__ == "__main__":
   projectName = f'apples'
   taskName = 'detect'
   dataName = args.data.split("/")[-1]
-  trainName = f'{projectName}-{args.epochs}_{dataName}_0'
+  if args.checkpoint is not None:
+    oldProjectName = args.checkpoint.split('/')[-1]
+    trainName = f'{oldProjectName}_{dataName}_0'
+  else:
+    trainName = f'{projectName}-{args.epochs}_{dataName}_0'
   modelVersion = '12'
   modelSize = 'n'
   modelName = f"yolo{modelVersion}{modelSize}.yaml"
 
   # Model
-  modelDet = ultralytics.YOLO(modelName)
-  # modelDet = ultralytics.YOLO(f'./runs/detect/ApplesM5_12n-detect-100_synetic+bg-train+real-val_010/weights/best.pt')
+  if args.checkpoint is not None:
+    modelDet = ultralytics.YOLO(f'{args.checkpoint}/weights/best.pt')
+  else:
+    modelDet = ultralytics.YOLO(modelName)
 
   # Write Data Yaml
   with open("./data.yaml",'w') as file:
