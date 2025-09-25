@@ -5,3 +5,4 @@ synetic+real
 synetic-train+real-val
 synetic
 runs
+data.yaml
